@@ -6,6 +6,9 @@
 }
 
 .swatch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
     width: 100%;
     background-color: var(--clr);
@@ -13,6 +16,11 @@
 
 .swatch:hover {
     z-index: 1;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0 1rem var(--clr);
+    border-radius: 5px;
+    box-shadow: 0 0 0 5px var(--clr);
+    cursor: pointer;
+}
+
+.swatch:active {
+    box-shadow: 0 0 0 3px var(--clr);
 }

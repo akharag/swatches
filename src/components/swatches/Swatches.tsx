@@ -1,4 +1,5 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
+import { ColorHSL } from "../../types";
 import Swatch from "./Swatch";
 import "./Swatches.css";
 
@@ -7,29 +8,46 @@ interface SwatchesProps {
     saturation?: number;
     lightness?: number;
     step?: number;
+    SaveColor?: (color: ColorHSL) => any;
 }
 
-const Swatches = ({ hue, saturation, lightness, step = 10 }: SwatchesProps) => {
+const Swatches = ({ hue, saturation, lightness, step = 10, SaveColor }: SwatchesProps) => {
+
+    const [color, setColor] = useState(undefined);
+
+    const HandleClick = (color: ColorHSL) => {
+        if (SaveColor) SaveColor(color);
+    }
 
     const _renderSwatches = () => {
-        const swatches_arr = [];
+        const colors: ColorHSL[] = [];
+        const swatches_arr: JSX.Element[] = [];
         const style = { "--step": step } as CSSProperties;
 
         if (!saturation && !lightness) {
-            for (let s = 0; s < 100; s += (100 / step)) {
+            for (let s = (100 / step); s < 100; s += (100 / step)) {
                 for (let l = 0; l < 100; l += (100 / step)) {
-                    swatches_arr.push(<Swatch key={"swatch_" + hue + "_" + s + "_" + l} style={{ "--step": step * step } as CSSProperties} hue={hue} saturation={s} lightness={l} />)
+                    colors.push({ hue: hue, saturation: s, lightness: l });
                 }
             }
         } else if (saturation) {
-            for (let l = 0; l < 100; l += (100 / step)) {
-                swatches_arr.push(<Swatch key={"swatch_" + hue + "_" + saturation + "_" + l} style={style} hue={hue} saturation={saturation} lightness={l} />)
+            for (let l = (100 / step); l < 100; l += (100 / step)) {
+                colors.push({ hue: hue, saturation: saturation, lightness: l });
             }
         } else if (lightness) {
-            for (let s = 0; s < 100; s += (100 / step)) {
-                swatches_arr.push(<Swatch key={"swatch_" + hue + "_" + s + "_" + lightness} style={style} hue={hue} saturation={s} lightness={lightness} />)
+            for (let s = (100 / step); s < 100; s += (100 / step)) {
+                colors.push({ hue: hue, saturation: s, lightness: lightness });
             }
         }
+        colors.forEach(c => {
+            swatches_arr.push(
+                <Swatch
+                    key={"swatch_" + c.hue + "_" + c.saturation + "_" + c.lightness}
+                    style={{ "--step": step * step } as CSSProperties}
+                    color={{ hue: c.hue, saturation: c.saturation, lightness: c.lightness }}
+                    onClick={HandleClick}
+                />)
+        })
         return swatches_arr;
     };
 

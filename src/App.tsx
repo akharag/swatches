@@ -1,31 +1,71 @@
+import { CSSProperties, useEffect, useState } from 'react';
 import './App.css';
-import Swatches from './components/swatches/Swatches';
+import { ColorHSL } from './types'
+import Swatches from './components/Swatches/Swatches';
+import SavedColors from './components/SavedColors/SavedColors';
 
-const STEP = 10;
+const STEP = 8;
+const MAX_SAVE = 35;
+
 
 function App() {
+  const [hueArr, setHueArray] = useState<number[]>([]);
+  const [savedColors, setSavedColors] = useState<ColorHSL[]>([]);
+
+  const SaveColor = (color: ColorHSL) => {
+    if (savedColors.length < MAX_SAVE) setSavedColors([...savedColors, color]);
+    // else {
+    //   DeleteColor(0);
+    //   setSavedColors([...savedColors, color]);
+    // }
+  }
+
+  const DeleteColor = (index: number) => {
+    console.log('delete');
+    const arr = [...savedColors];
+    arr.splice(index, 1);
+    setSavedColors([...arr]);
+  }
+
+  const GenerateColors = () => {
+    let arr: number[] = [];
+    let hue;
+    for (let i = 0; i < 5; i++) {
+      hue = Math.floor(Math.random() * 240);
+      arr.push(hue);
+    }
+
+    setHueArray(arr);
+  };
+
+  useEffect(() => {
+    GenerateColors();
+  }, [])
+
   return (
     <div className="App">
+      <h2>Palate Generator</h2>
       <div className="swatches-container">
-        {/* Lightness Variants */}
-        <Swatches hue={50} saturation={100} step={STEP} />
-        <Swatches hue={90} saturation={100} step={STEP} />
-        <Swatches hue={212} saturation={100} step={STEP} />
-        <Swatches hue={250} saturation={100} step={STEP} />
-        <Swatches hue={290} saturation={100} step={STEP} />
-        <Swatches hue={330} saturation={100} step={STEP} />
-        <Swatches hue={350} saturation={100} step={STEP} />
-        {/* Saturation Variants */}
-        <Swatches hue={50} lightness={50} step={STEP} />
-        <Swatches hue={90} lightness={50} step={STEP} />
-        <Swatches hue={212} lightness={50} step={STEP} />
-        <Swatches hue={250} lightness={50} step={STEP} />
-        <Swatches hue={290} lightness={50} step={STEP} />
-        <Swatches hue={330} lightness={50} step={STEP} />
-        <Swatches hue={350} lightness={50} step={STEP} />
+        {hueArr.map(h =>
+          <Swatches
+            hue={h}
+            saturation={100}
+            step={STEP}
+            SaveColor={SaveColor}
+          />)}
+      </div>
+      <button onClick={GenerateColors}>ReGenerate</button>
+      <div className="saved-colors">
+        <h3>Saved Colors</h3>
+        <h4>Click one to delete it</h4>
+        <button onClick={() => setSavedColors([])}>Clear All Colors</button>
+        <div>
+          {savedColors.map((c, i) => <SavedColors key={"save_color_" + i} color={c} onClick={() => DeleteColor(i)} />)}
+        </div>
       </div>
     </div>
   );
 }
+
 
 export default App;

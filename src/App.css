@@ -2,7 +2,25 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: rgb(193, 193, 193);
   text-align: center;
+}
+
+.App>* {
+  margin-top: 1rem;
+}
+
+.App>button {
+  margin: 1rem;
+  border: 1px solid;
+  border-radius: 0.4em;
+  padding: 1em;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.App>button:active {
+  filter: brightness(0.9);
 }
 
 .swatches-container {
@@ -10,3 +28,53 @@
   flex-direction: row;
   flex: 1;
 }
+
+.saved-colors {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.saved-colors>* {
+  flex: 1;
+}
+
+.saved-colors>button {
+  border: 1px solid;
+  margin: 1rem 0;
+  border-radius: 0.4em;
+  padding: 1em;
+  cursor: pointer;
+}
+
+.saved-colors>div {
+  --height: 1rem;
+  --margin: 0.5rem;
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: calc(1* (var(--height) + 2 * var(--margin)));
+  background-color: white;
+}
+
+.saved-colors>div>button {
+  display: inline-block;
+  margin: var(--margin) var(--margin) 0 0;
+  width: var(--height);
+  height: var(--height);
+  background-color: var(--clr, white);
+  cursor: pointer;
+}
+
+/* .saved-colors :is(h3, h4, button) {
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+.saved-colors>div>button:active {
+  filter: brightness(1.2);
+} */
