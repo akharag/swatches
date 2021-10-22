@@ -1,7 +1,7 @@
-import { CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Picker.css";
 import { NUM_SWATCHES, STEP } from "../../globalConstants";
-import Swatches, { SwatchesProps } from "../Swatches/Swatches";
+import Swatches from "../Swatches/Swatches";
 import { ColorHSL } from "../../types";
 
 interface PickerProps {
@@ -20,10 +20,8 @@ const Picker = ({ header, SaveColor }: PickerProps) => {
     const GenerateColors = () => {
         const arr: number[] = [];
         while (arr.length < NUM_SWATCHES) {
-            console.log(arr);
             GenerateColor(arr);
         }
-        console.log(arr);
         setHueArray([...arr]);
     };
 
@@ -34,8 +32,9 @@ const Picker = ({ header, SaveColor }: PickerProps) => {
     return <div className="picker">
         {header && <h2>{header}</h2>}
         <div className="swatches-container">
-            {hueArr.map(h =>
+            {hueArr.map((h, i) =>
                 <Swatches
+                    key={'color' + i}
                     hue={h}
                     saturation={100}
                     step={STEP}
