@@ -6,10 +6,11 @@ interface SwatchProp {
     alpha?: number;
     style?: CSSProperties;
     className?: string;
+    children?: any;
     onClick?: (param: any) => any;
 }
 
-const Swatch = ({ color, alpha = 100, style = {}, className = "", onClick }: SwatchProp) => {
+const Swatch = ({ color, alpha = 100, style = {}, className = "", children, onClick }: SwatchProp) => {
 
     const { hue, saturation, lightness } = color;
     const [hover, setHover] = useState(false);
@@ -23,7 +24,7 @@ const Swatch = ({ color, alpha = 100, style = {}, className = "", onClick }: Swa
         onMouseLeave={() => setHover(false)}
         onClick={() => { if (onClick) onClick(color) }}
     >
-        {hover && <h3 style={{ color: lightness < 40 ? 'white' : 'black' }}>Click to Save Me</h3>}
+        {hover && <h3 style={{ color: lightness < 40 ? 'white' : 'black' }}>{children}</h3>}
     </button>
 };
 

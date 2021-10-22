@@ -1,19 +1,17 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties } from "react";
 import { ColorHSL } from "../../types";
 import Swatch from "./Swatch";
 import "./Swatches.css";
 
-interface SwatchesProps {
+export interface SwatchesProps {
     hue: number;
     saturation?: number;
     lightness?: number;
     step?: number;
-    SaveColor?: (color: ColorHSL) => any;
+    SaveColor?: (color: ColorHSL) => void;
 }
 
 const Swatches = ({ hue, saturation, lightness, step = 10, SaveColor }: SwatchesProps) => {
-
-    const [color, setColor] = useState(undefined);
 
     const HandleClick = (color: ColorHSL) => {
         if (SaveColor) SaveColor(color);
@@ -22,7 +20,6 @@ const Swatches = ({ hue, saturation, lightness, step = 10, SaveColor }: Swatches
     const _renderSwatches = () => {
         const colors: ColorHSL[] = [];
         const swatches_arr: JSX.Element[] = [];
-        const style = { "--step": step } as CSSProperties;
 
         if (!saturation && !lightness) {
             for (let s = (100 / step); s < 100; s += (100 / step)) {
@@ -46,12 +43,13 @@ const Swatches = ({ hue, saturation, lightness, step = 10, SaveColor }: Swatches
                     style={{ "--step": step * step } as CSSProperties}
                     color={{ hue: c.hue, saturation: c.saturation, lightness: c.lightness }}
                     onClick={HandleClick}
-                />)
+                >Test</Swatch>)
         })
         return swatches_arr;
     };
 
     return <div className="swatches">
+        <h2>Hue:<br />{hue}</h2>
         {_renderSwatches().map((s, i) => { return s; })}
     </div>
 };

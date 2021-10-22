@@ -1,23 +1,21 @@
 .swatches {
     display: flex;
     flex-direction: column;
-    /* flex: 1; */
-    width: 100%;
+    flex: 0 1 100%;
 }
 
 .swatch {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
-    width: 100%;
+    flex: 0 1 auto;
+    min-height: 2rem;
     background-color: var(--clr);
 }
 
 .swatch:hover {
     z-index: 1;
-    border-radius: 5px;
-    box-shadow: 0 0 0 5px var(--clr);
+    transform: scale(1.2);
     cursor: pointer;
 }
 

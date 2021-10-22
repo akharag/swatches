@@ -13,3 +13,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: clamp(0.5em, 5vw, 1.5em);
+}
