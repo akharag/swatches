@@ -1,7 +1,8 @@
 .swatches {
     display: flex;
     flex-direction: column;
-    flex: 0 1 100%;
+    flex: 1;
+    /* flex: 0 1 100%; */
 }
 
 .swatch {

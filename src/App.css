@@ -23,21 +23,17 @@
   filter: brightness(0.9);
 }
 
-.picker-container {
+.pickers-container {
   display: flex;
   justify-content: space-around;
-  align-items: center;
 }
 
-/* For Testing */
-
-/* .picker-container>.picker {
-  outline: 1px solid;
-} */
-
-/* .picker-container>div {
+.pickers-container>div {
   flex: 1;
-  height: 100px;
-  outline: 1px solid;
-  background: chartreuse;
-} */
+  margin: 0 0.2rem;
+}
+
+.preview-color {
+  background: var(--clr);
+  min-height: 2rem;
+}

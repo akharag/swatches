@@ -2,6 +2,11 @@
     flex: 1;
 }
 
+.selected-color {
+    background: var(--clr);
+    min-height: 2rem;
+}
+
 .swatches-container {
     display: flex;
     flex-direction: row;

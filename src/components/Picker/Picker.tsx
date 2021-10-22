@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import "./Picker.css";
 import { NUM_SWATCHES, STEP } from "../../globalConstants";
 import Swatches, { SwatchesProps } from "../Swatches/Swatches";
