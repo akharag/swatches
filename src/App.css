@@ -35,5 +35,11 @@
 
 .preview-color {
   background: var(--clr);
-  min-height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.preview-color>div {
+  flex: 1;
+  padding: 0.5em;
 }

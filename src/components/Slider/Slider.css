@@ -1,0 +1,30 @@
+.slider input[type='range'] {
+    --height: 1em;
+    -webkit-appearance: none;
+    border-radius: var(--height);
+    background-color: white;
+}
+
+.slider input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: var(--height);
+    width: var(--height);
+    border: 0.2em solid;
+    border-radius: 50%;
+    background-color: none;
+    ;
+}
+
+.slider input[type='range'].saturation {
+    background: linear-gradient( 0.25turn, hsl(var(--hue), 0%, var(--lightness)), hsl(var(--hue), 100%, var(--lightness)));
+    /* background-color: hsl(var(--hue), 0%, var(--lightness)); */
+}
+
+.slider input[type='range'].lightness {
+    background: linear-gradient( 0.25turn, hsl(var(--hue), var(--saturation), 0%), hsl(var(--hue), var(--saturation), 100%));
+    /* background-color: hsl(var(--hue), 0%, var(--lightness)); */
+}
+
+.slider input[type='range']:is(.saturation, .lightness)::-webkit-slider-thumb {
+    background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+}
