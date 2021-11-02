@@ -1,36 +1,50 @@
-import { CSSProperties, useState } from 'react';
+import { CSSProperties, useContext, useState } from 'react';
 import './App.css';
 import './util.css';
-import ThemeContext, { ColorTheme } from './hooks/ColorsProvider';
+import ThemeProvider, { ThemeContext, ColorTheme } from './hooks/contexts/ThemeContext';
 import Picker from './components/Picker/Picker';
 import ColorSlider from './components/Slider/Slider';
 import { ColorHSL } from './types';
+import Preview from './components/Preview/Preview';
 
 
 function App() {
-  const [theme, setTheme] = useState<ColorTheme>({} as ColorTheme);
-  const { primary, secondary, tertiary } = theme;
 
   return (
-    <ThemeContext.Provider value={{}}>
-      <div className="App">
-        <h1>Palate Generator</h1>
-        <div className="pickers-container">
-          <div>
-            <Picker header="Primary" SaveColor={(color) => setTheme({ ...theme, primary: color })} />
-            {primary && <PreviewColor onChange={(color) => setTheme({ ...theme, primary: color })} color={primary} />}
-          </div>
-          <div>
-            <Picker header="Secondary" SaveColor={(color) => setTheme({ ...theme, secondary: color })} />
-            {secondary && <PreviewColor onChange={(color) => setTheme({ ...theme, secondary: color })} color={secondary} />}
-          </div>
-          <div>
-            <Picker header="Tertiary" SaveColor={(color) => setTheme({ ...theme, tertiary: color })} />
-            {tertiary && <PreviewColor onChange={(color) => setTheme({ ...theme, tertiary: color })} color={tertiary} />}
-          </div>
-        </div>
-      </div>
-    </ThemeContext.Provider>
+    <ThemeProvider>
+      <ThemeContext.Consumer>
+        {themeContext => {
+          const { primary, secondary, tertiary, updateTheme } = themeContext;
+          const appStyle = {
+            '--hue': primary?.hue,
+            '--saturation': `${primary?.saturation}%`,
+            '--lightness': `${primary?.lightness}%`
+          } as CSSProperties;
+          return (
+            <div style={appStyle} className="App">
+              <h1>Palate Generator</h1>
+              <div className="pickers-container">
+                <div>
+                  <Picker header="Primary" SaveColor={(color) => updateTheme!('primary', color!)} />
+                  {primary && <PreviewColor onChange={(color) => updateTheme!('primary', color!)} color={primary} />}
+                </div>
+                <div>
+                  <Picker header="Secondary" SaveColor={(color) => updateTheme!('secondary', color!)} />
+                  {secondary && <PreviewColor onChange={(color) => updateTheme!('secondary', color!)} color={secondary} />}
+                </div>
+                <div>
+                  <Picker header="Tertiary" SaveColor={(color) => updateTheme!('tertiary', color!)} />
+                  {tertiary && <PreviewColor onChange={(color) => updateTheme!('tertiary', color!)} color={tertiary} />}
+                </div>
+              </div>
+              <Preview />
+            </div>
+          )
+        }
+
+        }
+      </ThemeContext.Consumer>
+    </ThemeProvider>
   );
 }
 

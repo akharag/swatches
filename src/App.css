@@ -6,9 +6,9 @@
   text-align: center;
 }
 
-.App>* {
+/* .App>* {
   margin-top: 1rem;
-}
+} */
 
 .App>button {
   margin: 1rem;
@@ -26,6 +26,8 @@
 .pickers-container {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 
 .pickers-container>div {

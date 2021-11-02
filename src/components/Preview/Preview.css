@@ -1,0 +1,4 @@
+.preview-container {
+    background-color: hsl(var(--hue, 0), var(--saturation, 50%), var(--lightness, 50%));
+    height: 100%;
+}
