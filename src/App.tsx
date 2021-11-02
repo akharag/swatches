@@ -17,15 +17,18 @@ function App() {
           const { primary, secondary, tertiary, updateTheme } = themeContext;
           const appStyle = {
             '--primary-hue': primary?.hue,
-            '--primary-saturation': primary?.saturation ? `${primary?.saturation}%` : '100%',
+            '--primary-saturation': primary && primary?.saturation >= 0 ? `${primary?.saturation}%` : '100%',
             '--primary-lightness': `${primary?.lightness}%`,
             '--secondary-hue': secondary?.hue,
-            '--secondary-saturation': secondary?.saturation ? `${secondary?.saturation}%` : '100%',
+            '--secondary-saturation': secondary && secondary?.saturation >= 0 ? `${secondary?.saturation}%` : '100%',
             '--secondary-lightness': `${primary?.lightness}%`,
             '--tertiary-hue': tertiary?.hue,
-            '--tertiary-saturation': tertiary?.saturation ? `${primary?.saturation}%` : '100%',
+            '--tertiary-saturation': tertiary && tertiary?.saturation >= 0 ? `${tertiary?.saturation}%` : '100%',
             '--tertiary-lightness': `${tertiary?.lightness}%`,
           } as CSSProperties;
+
+          //! BUG: COLORS SATURATION DOES NOT MAX OUT ON THE BUTTONS
+
           return (
             <div style={appStyle} className={`App ${primary && primary?.lightness > 50 ? 'light' : 'dark'}`}>
               <h1>Palate Generator</h1>
