@@ -1,11 +1,11 @@
-import { CSSProperties, useContext, useState } from 'react';
+import { CSSProperties } from 'react';
 import './App.css';
 import './util.css';
-import ThemeProvider, { ThemeContext, ColorTheme } from './hooks/contexts/ThemeContext';
+import ThemeProvider, { ThemeContext } from './hooks/contexts/ThemeContext';
 import Picker from './components/Picker/Picker';
 import ColorSlider from './components/Slider/Slider';
 import { ColorHSL } from './types';
-import Preview from './components/Preview/Preview';
+import PreviewItem from './components/PreviewItem/PreviewItem';
 
 
 function App() {
@@ -16,12 +16,18 @@ function App() {
         {themeContext => {
           const { primary, secondary, tertiary, updateTheme } = themeContext;
           const appStyle = {
-            '--hue': primary?.hue,
-            '--saturation': `${primary?.saturation}%`,
-            '--lightness': `${primary?.lightness}%`
+            '--primary-hue': primary?.hue,
+            '--primary-saturation': primary?.saturation ? `${primary?.saturation}%` : '100%',
+            '--primary-lightness': `${primary?.lightness}%`,
+            '--secondary-hue': secondary?.hue,
+            '--secondary-saturation': secondary?.saturation ? `${secondary?.saturation}%` : '100%',
+            '--secondary-lightness': `${primary?.lightness}%`,
+            '--tertiary-hue': tertiary?.hue,
+            '--tertiary-saturation': tertiary?.saturation ? `${primary?.saturation}%` : '100%',
+            '--tertiary-lightness': `${tertiary?.lightness}%`,
           } as CSSProperties;
           return (
-            <div style={appStyle} className="App">
+            <div style={appStyle} className={`App ${primary && primary?.lightness > 50 ? 'light' : 'dark'}`}>
               <h1>Palate Generator</h1>
               <div className="pickers-container">
                 <div>
@@ -37,7 +43,7 @@ function App() {
                   {tertiary && <PreviewColor onChange={(color) => updateTheme!('tertiary', color!)} color={tertiary} />}
                 </div>
               </div>
-              <Preview />
+              <PreviewItem />
             </div>
           )
         }
@@ -67,8 +73,14 @@ const PreviewColor = (props: { color: ColorHSL, onChange: (color: ColorHSL) => v
 
   return <div style={style} className="preview-color">
     <div><p>Hue: {hue}  </p></div>
-    <div><p>Saturation: {saturation}</p> <ColorSlider type='saturation' onChange={UpdateSaturation} color={props.color} /></div>
-    <div><p>Lightness: {lightness.toFixed(0)}</p><ColorSlider type='lightness' onChange={UpdateLightness} color={props.color} /></div>
+    <div>
+      <p>Saturation: {saturation}</p>
+      <ColorSlider type='saturation' onChange={UpdateSaturation} color={props.color} initialValue={props.color.saturation} />
+    </div>
+    <div>
+      <p>Lightness: {lightness.toFixed(0)}</p>
+      <ColorSlider type='lightness' onChange={UpdateLightness} color={props.color} initialValue={props.color.lightness} />
+    </div>
   </div>
 }
 

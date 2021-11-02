@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { ColorHSL } from "../../types";
 import './Slider.css';
 
@@ -25,6 +25,10 @@ export const Slider = ({
         if (onChange) onChange(value);
     }
 
+    useEffect(() => {
+        setValue(initialValue);
+    }, [initialValue])
+
     return <div className='slider'>
         <input
             type='range'
@@ -47,13 +51,10 @@ interface ColorSliderProps extends SliderProps {
 const ColorSlider = ({
     type,
     color,
-    style = {},
-    className = '',
     onChange,
-    minValue = 0,
-    maxValiue = 100,
-    initialValue = 50
+    initialValue = 50,
 }: ColorSliderProps) => {
+
     const [sliderStyle, setSliderStyle] = useState<CSSProperties>({
         '--hue': (color.hue),
         '--saturation': `${color.saturation}%`,
@@ -61,26 +62,26 @@ const ColorSlider = ({
     } as CSSProperties);
 
     const HandleChange = (value: number) => {
-        let newStyle = sliderStyle;
-        if (type === 'saturation') {
-            newStyle = {
-                '--hue': color.hue,
-                '--saturation': `${value}%`,
-                '--lightness': `${color.lightness}%`
-            } as CSSProperties;
-        }
-        if (type === 'lightness') {
-            newStyle = {
-                '--hue': color.hue,
-                '--saturation': `${color.saturation}%`,
-                '--lightness': `${value}%`
-            } as CSSProperties;
-        }
-        setSliderStyle(newStyle);
         if (onChange) onChange(value);
     }
 
-    return <Slider style={sliderStyle} className={type} initialValue={initialValue} onChange={HandleChange} />
+    useEffect(() => {
+        // HandleChange(type === 'saturation' ? color.saturation : color.lightness);
+        console.log(color);
+        setSliderStyle({
+            '--hue': (color.hue),
+            '--saturation': `${color.saturation}%`,
+            '--lightness': `${color.lightness}%`
+        } as CSSProperties);
+
+    }, [color])
+
+    return <Slider
+        style={sliderStyle}
+        className={type}
+        initialValue={initialValue}
+        onChange={HandleChange}
+    />
 }
 
 export default ColorSlider;

@@ -1,4 +1,28 @@
 .App {
+  /* primary */
+  --primary-100: hsl(var(--primary-hue), var(--primary-saturation), max(calc(var(--primary-lightness) - 30%), 0%));
+  --primary-200: hsl(var(--primary-hue), var(--primary-saturation), max(calc(var(--primary-lightness) - 20%), 10%));
+  --primary-300: hsl(var(--primary-hue), var(--primary-saturation), max(calc(var(--primary-lightness) - 10%), 20%));
+  --primary-400: hsl(var(--primary-hue), var(--primary-saturation), var(--primary-lightness));
+  --primary-500: hsl(var(--primary-hue), var(--primary-saturation), calc(var(--primary-lightness) + 10%));
+  --primary-600: hsl(var(--primary-hue), var(--primary-saturation), calc(var(--primary-lightness) + 20%));
+  --primary-700: hsl(var(--primary-hue), var(--primary-saturation), calc(var(--primary-lightness) + 30%));
+  /* secondary */
+  --secondary-100: hsl(var(--secondary-hue), var(--secondary-saturation), calc(var(--secondary-lightness) - 30%));
+  --secondary-200: hsl(var(--secondary-hue), var(--secondary-saturation), calc(var(--secondary-lightness) - 20%));
+  --secondary-300: hsl(var(--secondary-hue), var(--secondary-saturation), calc(var(--secondary-lightness) - 10%));
+  --secondary-400: hsl(var(--secondary-hue), var(--secondary-saturation), var( --secondary-lightness));
+  --secondary-500: hsl(var(--secondary-hue), var(--secondary-saturation), calc(var(--secondary-lightness) + 10%));
+  --secondary-600: hsl(var(--secondary-hue), var(--secondary-saturation), calc(var(--secondary-lightness) + 20%));
+  --secondary-700: hsl(var(--secondary-hue), var(--secondary-saturation), calc(var(--secondary-lightness) + 30%));
+  /* tertiary */
+  --tertiary-100: hsl(var(--tertiary-hue), var(--tertiary-saturation), calc(var(--tertiary-lightness) - 30%));
+  --tertiary-200: hsl(var(--tertiary-hue), var(--tertiary-saturation), calc(var(--tertiary-lightness) - 20%));
+  --tertiary-300: hsl(var(--tertiary-hue), var(--tertiary-saturation), calc(var(--tertiary-lightness) - 10%));
+  --tertiary-400: hsl(var(--tertiary-hue), var(--tertiary-saturation), var( --tertiary-lightness));
+  --tertiary-500: hsl(var(--tertiary-hue), var(--tertiary-saturation), calc(var(--tertiary-lightness) + 10%));
+  --tertiary-600: hsl(var(--tertiary-hue), var(--tertiary-saturation), calc(var(--tertiary-lightness) + 20%));
+  --tertiary-700: hsl(var(--tertiary-hue), var(--tertiary-saturation), calc(var(--tertiary-lightness) + 30%));
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -6,9 +30,41 @@
   text-align: center;
 }
 
-/* .App>* {
-  margin-top: 1rem;
-} */
+/* Primary Styles */
+
+.light button.primary {
+  background-color: var(--primary-300);
+  color: hsl(0, 0%, 10%)
+}
+
+.dark button.primary {
+  background-color: var(--primary-500);
+  color: hsl(0, 0%, 80%);
+}
+
+/* Secondary Styles */
+
+.light button.secondary {
+  background-color: var(--secondary-300);
+  color: hsl(0, 0%, 10%)
+}
+
+.dark button.secondary {
+  background-color: var(--secondary-500);
+  color: hsl(0, 0%, 80%);
+}
+
+/* Tertiary Styles */
+
+.light button.tertiary {
+  background-color: var(--tertiary-300);
+  color: hsl(0, 0%, 10%)
+}
+
+.dark button.tertiary {
+  background-color: var(--tertiary-500);
+  color: hsl(0, 0%, 80%);
+}
 
 .App>button {
   margin: 1rem;
