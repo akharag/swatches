@@ -3,8 +3,87 @@
     height: 100%;
 }
 
-.preview-container button {
+.preview-container button, .preview-container input {
     margin: 1em;
+}
+
+/* BUTTON STYLES */
+
+.preview-container button {
     border-radius: 0.4em;
     padding: 0.5em 1em;
 }
+
+/* Primary Styles */
+
+.light button.primary {
+    background-color: var(--primary-300);
+    color: hsl(0, 0%, 10%)
+}
+
+.dark button.primary {
+    background-color: var(--primary-500);
+    color: hsl(0, 0%, 80%);
+}
+
+.light button.primary.outline {
+    outline: 0.2em solid var(--primary-200);
+    background-color: var(--primary-700);
+    color: hsl(0, 0%, 10%)
+}
+
+.dark button.primary.outline {
+    outline: 0.2em solid var(--primary-600);
+    background-color: var(--primary-400);
+    color: hsl(0, 0%, 80%);
+}
+
+/* Secondary Styles */
+
+.light button.secondary {
+    background-color: var(--secondary-300);
+    color: hsl(0, 0%, 10%)
+}
+
+.dark button.secondary {
+    background-color: var(--secondary-500);
+    color: hsl(0, 0%, 80%);
+}
+
+.light button.secondary.outline {
+    outline: 0.2em solid var(--secondary-300);
+    background-color: var(--secondary-700);
+    color: hsl(0, 0%, 10%)
+}
+
+.dark button.secondary.outline {
+    outline: 0.2em solid var(--secondary-600);
+    background-color: var(--secondary-400);
+    color: hsl(0, 0%, 80%);
+}
+
+/* Tertiary Styles */
+
+.light button.tertiary {
+    background-color: var(--tertiary-300);
+    color: hsl(0, 0%, 10%)
+}
+
+.dark button.tertiary {
+    background-color: var(--tertiary-500);
+    color: hsl(0, 0%, 80%);
+}
+
+.light button.tertiary.outline {
+    outline: 0.2em solid var(--tertiary-300);
+    background-color: var(--secondary-700);
+    color: hsl(0, 0%, 10%)
+}
+
+.dark button.tertiary.outline {
+    outline: 0.2em solid var(--tertiary-600);
+    background-color: var(--tertiary-400);
+    color: hsl(0, 0%, 80%);
+}
+
+/* TEXT INPUT STYLES */
