@@ -42,6 +42,18 @@
   color: hsl(0, 0%, 80%);
 }
 
+.light button.primary.outline {
+  outline: 0.2em solid var(--primary-300);
+  background-color: var(--primary-700);
+  color: hsl(0, 0%, 10%)
+}
+
+.dark button.primary.outline {
+  outline: 0.2em solid var(--primary-500);
+  background-color: var(--primary-400);
+  color: hsl(0, 0%, 80%);
+}
+
 /* Secondary Styles */
 
 .light button.secondary {
@@ -54,6 +66,18 @@
   color: hsl(0, 0%, 80%);
 }
 
+.light button.secondary.outline {
+  outline: 0.2em solid var(--secondary-300);
+  background-color: var(--secondary-700);
+  color: hsl(0, 0%, 10%)
+}
+
+.dark button.secondary.outline {
+  outline: 0.2em solid var(--secondary-500);
+  background-color: var(--secondary-400);
+  color: hsl(0, 0%, 80%);
+}
+
 /* Tertiary Styles */
 
 .light button.tertiary {
@@ -63,6 +87,18 @@
 
 .dark button.tertiary {
   background-color: var(--tertiary-500);
+  color: hsl(0, 0%, 80%);
+}
+
+.light button.tertiary.outline {
+  outline: 0.2em solid var(--tertiary-300);
+  background-color: var(--secondary-700);
+  color: hsl(0, 0%, 10%)
+}
+
+.dark button.tertiary.outline {
+  outline: 0.2em solid var(--tertiary-500);
+  background-color: var(--tertiary-400);
   color: hsl(0, 0%, 80%);
 }
 

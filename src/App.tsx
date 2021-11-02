@@ -21,13 +21,11 @@ function App() {
             '--primary-lightness': `${primary?.lightness}%`,
             '--secondary-hue': secondary?.hue,
             '--secondary-saturation': secondary && secondary?.saturation >= 0 ? `${secondary?.saturation}%` : '100%',
-            '--secondary-lightness': `${primary?.lightness}%`,
+            '--secondary-lightness': `${secondary?.lightness}%`,
             '--tertiary-hue': tertiary?.hue,
             '--tertiary-saturation': tertiary && tertiary?.saturation >= 0 ? `${tertiary?.saturation}%` : '100%',
             '--tertiary-lightness': `${tertiary?.lightness}%`,
           } as CSSProperties;
-
-          //! BUG: COLORS SATURATION DOES NOT MAX OUT ON THE BUTTONS
 
           return (
             <div style={appStyle} className={`App ${primary && primary?.lightness > 50 ? 'light' : 'dark'}`}>
