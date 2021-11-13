@@ -13,9 +13,9 @@ const PreviewItem = () => {
             <button className="secondary outline">Button Secondary</button>
             <button className="tertiary outline">Button Tertiary</button>
             <br />
-            <input className="primary" type="text" name="" id="" placeholder="primary" />
-            <input className="secondary" type="text" name="" id="" placeholder="secondary" />
-            <input className="tertiary" type="text" name="" id="" placeholder="tertiary" />
+            <input className="primary" type="text" name="" id="" placeholder="Primary" />
+            <input className="secondary" type="text" name="" id="" placeholder="Secondary" />
+            <input className="tertiary" type="text" name="" id="" placeholder="Tertiary" />
             <br />
             <input type="checkbox" name="" id="" value="primary" />
             <label htmlFor="primary">Primary</label>

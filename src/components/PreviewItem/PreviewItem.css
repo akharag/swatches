@@ -5,25 +5,21 @@
 
 .preview-container button, .preview-container input {
     margin: 1em;
-}
-
-/* BUTTON STYLES */
-
-.preview-container button {
     border-radius: 0.4em;
     padding: 0.5em 1em;
 }
 
+/* BUTTON STYLES */
+
 /* Primary Styles */
+
+button:is(.primary, .secondary, .tertiary) {
+    font-weight: 700;
+}
 
 .light button.primary {
     background-color: var(--primary-300);
     color: hsl(0, 0%, 10%)
-}
-
-.dark button.primary {
-    background-color: var(--primary-500);
-    color: hsl(0, 0%, 80%);
 }
 
 .light button.primary.outline {
@@ -32,10 +28,15 @@
     color: hsl(0, 0%, 10%)
 }
 
+.dark button.primary {
+    background-color: var(--primary-500);
+    color: hsl(0, 0%, 100%, 90%);
+}
+
 .dark button.primary.outline {
-    outline: 0.2em solid var(--primary-600);
-    background-color: var(--primary-400);
-    color: hsl(0, 0%, 80%);
+    outline: 0.3em solid var(--primary-700);
+    background-color: var(--primary-500);
+    color: hsl(0, 0%, 90%, 90%);
 }
 
 /* Secondary Styles */
@@ -45,20 +46,20 @@
     color: hsl(0, 0%, 10%)
 }
 
+.light button.secondary.outline {
+    outline: 0.3em solid var(--secondary-300);
+    background-color: var(--secondary-700);
+    color: hsl(0, 0%, 10%)
+}
+
 .dark button.secondary {
     background-color: var(--secondary-500);
     color: hsl(0, 0%, 80%);
 }
 
-.light button.secondary.outline {
-    outline: 0.2em solid var(--secondary-300);
-    background-color: var(--secondary-700);
-    color: hsl(0, 0%, 10%)
-}
-
 .dark button.secondary.outline {
-    outline: 0.2em solid var(--secondary-600);
-    background-color: var(--secondary-400);
+    outline: 0.3em solid var(--secondary-700);
+    background-color: var(--secondary-500);
     color: hsl(0, 0%, 80%);
 }
 
@@ -69,21 +70,66 @@
     color: hsl(0, 0%, 10%)
 }
 
+.light button.tertiary.outline {
+    outline: 0.3em solid var(--tertiary-300);
+    background-color: var(--tertiary-700);
+    color: hsl(0, 0%, 10%)
+}
+
 .dark button.tertiary {
     background-color: var(--tertiary-500);
     color: hsl(0, 0%, 80%);
 }
 
-.light button.tertiary.outline {
-    outline: 0.2em solid var(--tertiary-300);
-    background-color: var(--secondary-700);
-    color: hsl(0, 0%, 10%)
-}
-
 .dark button.tertiary.outline {
-    outline: 0.2em solid var(--tertiary-600);
-    background-color: var(--tertiary-400);
+    outline: 0.3em solid var(--tertiary-700);
+    background-color: var(--tertiary-500);
     color: hsl(0, 0%, 80%);
 }
 
 /* TEXT INPUT STYLES */
+
+/* Light */
+
+.light input[type="text"] {
+    outline: 0.1em solid var(--clr);
+    background-color: var(--clr-bg);
+}
+
+.light input[type="text"].primary {
+    --clr: var(--primary-200);
+    --clr-bg: var(--primary-700);
+}
+
+.light input[type="text"].secondary {
+    --clr: var(--secondary-200);
+    --clr-bg: var(--secondary-700);
+}
+
+.light input[type="text"].tertiary {
+    --clr: var(--tertiary-200);
+    --clr-bg: var(--tertiary-700);
+}
+
+/* Dark */
+
+.dark input[type="text"].primary {
+    outline: 0.2em solid var(--clr);
+    background-color: var(--clr-bg);
+    color: hsl(0, 0%, 100%, 90%);
+}
+
+.dark input[type="text"].primary {
+    --clr: var(--primary-600);
+    --clr-bg: var(--primary-200);
+}
+
+.dark input[type="text"].secondary {
+    --clr: var(--secondary-600);
+    --clr-bg: var(--secondary-200);
+}
+
+.dark input[type="text"].tertiary {
+    --clr: var(--tertiary-600);
+    --clr-bg: var(--tertiary-200);
+}
